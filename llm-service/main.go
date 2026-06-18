@@ -11,7 +11,8 @@ import (
 	"net/http"
 	"os"
 	"time"
- 
+
+	"github.com/joho/godotenv"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"
@@ -150,7 +151,7 @@ func processHandler(w http.ResponseWriter, r *http.Request) {
 	)
  
 	log.Printf("[llm-service] /process called — order=%s user=%s", orderID, userID)
- 
+	godotenv.Load()
 	apiKey := os.Getenv("ANTHROPIC_API_KEY")
  
 	var (
